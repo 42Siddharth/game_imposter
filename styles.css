@@ -1,0 +1,150 @@
+:root {
+  --blue: #3857d6;
+  --blue-dark: #203a9d;
+  --ink: #17204a;
+  --paper: #fffdf4;
+  --yellow: #ffd83d;
+  --coral: #ff625f;
+  --green: #58df71;
+  --cyan: #45d9e7;
+  --pink: #f16cd5;
+  --violet: #9872ff;
+  --orange: #ff9e42;
+  --shadow: 0 9px 0 rgba(17, 32, 96, 0.28), 0 18px 42px rgba(9, 24, 83, 0.22);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--blue);
+  font-family: "Baloo 2", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+button { font: inherit; }
+button:focus-visible { outline: 4px solid var(--yellow); outline-offset: 4px; }
+
+.doodles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: .22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='220' viewBox='0 0 240 220'%3E%3Cg fill='none' stroke='%23182f91' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 30l18-14 18 14-18 14zM40 44v20M30 54h20M156 18c18 3 28 14 30 32-19 3-35-4-45-19 5-6 10-10 15-13zM152 26l29 18'/%3E%3Ccircle cx='96' cy='92' r='19'/%3E%3Cpath d='M85 89l6 6 15-11M178 91l12-17 12 17M190 74v42M170 116h40M24 145c12-12 29-12 41 0-12 14-28 14-41 0zM24 145l-10-10m51 10 10-10M120 154l18-18 17 18-17 18zM129 145h18M138 136v36M192 171c9-16 28-16 36 0-7 18-28 18-36 0z'/%3E%3Ccircle cx='210' cy='169' r='5'/%3E%3Cpath d='M67 198l9-24 9 24-9-5z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 240px 220px;
+}
+
+main { min-height: calc(100vh - 60px); }
+.screen { animation: screen-in .34s ease both; }
+.screen[hidden] { display: none !important; }
+.home-screen { width: min(1080px, 100%); margin: auto; padding: 34px 20px 80px; }
+.hero { min-height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.eyebrow, .section-kicker { margin: 0 0 10px; text-transform: uppercase; letter-spacing: .13em; font-weight: 800; font-size: .77rem; }
+.eyebrow { color: #e4e9ff; display: flex; align-items: center; gap: 8px; }
+.eyebrow-dot { width: 9px; height: 9px; background: var(--green); border-radius: 50%; box-shadow: 0 0 0 4px rgba(88,223,113,.17); }
+.logo { margin: 0; color: white; line-height: .78; filter: drop-shadow(0 7px 0 #17245f); transform: rotate(-1deg); }
+.logo-small { display: block; margin: 0 0 9px; font-family: "Patrick Hand", cursive; font-size: clamp(1.5rem, 6vw, 2.3rem); letter-spacing: .5em; padding-left: .5em; }
+.logo-word { display: flex; font-size: clamp(3.2rem, 14vw, 7.4rem); font-weight: 800; -webkit-text-stroke: clamp(2px, .45vw, 5px) var(--ink); paint-order: stroke fill; }
+.letter { display: inline-block; animation: wiggle 3.1s ease-in-out infinite; }
+.letter:nth-child(2n) { animation-delay: -.7s; }
+.letter:nth-child(3n) { animation-delay: -1.4s; }
+.coral { color: var(--coral); } .yellow { color: var(--yellow); } .green { color: var(--green); }
+.cyan { color: var(--cyan); } .pink { color: var(--pink); } .orange { color: var(--orange); }
+.violet { color: var(--violet); } .white { color: #fff; }
+.logo-game { display: block; margin-top: 17px; font-size: clamp(1.15rem, 5vw, 2.1rem); letter-spacing: .55em; padding-left: .55em; }
+
+.suspects { display: flex; align-items: end; justify-content: center; margin: 30px 0 26px; filter: drop-shadow(0 5px 0 rgba(17, 25, 70, .5)); }
+.suspect { width: 56px; height: 55px; margin-left: -6px; border: 4px solid var(--ink); border-radius: 48% 48% 16px 16px; background: var(--yellow); display: grid; place-items: center; color: var(--ink); font-weight: 800; font-size: 1.4rem; transform: rotate(-4deg); }
+.suspect::before, .suspect::after { content: ""; position: absolute; width: 7px; height: 7px; margin-top: -13px; border-radius: 50%; background: var(--ink); }
+.suspect::before { margin-left: -17px; } .suspect::after { margin-left: 17px; }
+.suspect span { margin-top: 20px; font-family: "Patrick Hand", cursive; }
+.suspect-two { background: var(--green); transform: rotate(3deg) translateY(4px); }
+.suspect-three { background: var(--coral); height: 66px; transform: rotate(-2deg); position: relative; }
+.suspect-four { background: var(--cyan); transform: rotate(5deg) translateY(6px); }
+
+.button { width: 100%; min-height: 58px; border: 3px solid var(--ink); border-radius: 14px; padding: 13px 21px; cursor: pointer; font-weight: 800; font-size: 1.08rem; display: flex; align-items: center; justify-content: center; gap: 12px; transition: transform .16s ease, box-shadow .16s ease; }
+.button:hover { transform: translateY(-2px) rotate(-.4deg); }
+.button:active { transform: translateY(4px); box-shadow: none; }
+.button-primary { color: var(--ink); background: var(--yellow); box-shadow: 0 6px 0 var(--ink); }
+.button-dark { color: white; background: var(--ink); box-shadow: 0 6px 0 #090d24; }
+.button-big { max-width: 340px; font-size: 1.35rem; }
+.button-arrow { font-size: 1.55rem; }
+.player-note { margin: 20px 0 0; color: #dce3ff; font-weight: 600; }
+
+.how-to-play { position: relative; background: var(--paper); border: 4px solid var(--ink); border-radius: 12px; box-shadow: var(--shadow); padding: 50px 42px 37px; transform: rotate(.35deg); }
+.how-to-play > .section-kicker { text-align: center; color: var(--coral); }
+.how-to-play h2, .game-card h2 { margin: 0; text-align: center; font-size: clamp(2rem, 7vw, 3.3rem); line-height: 1; }
+.how-to-play h2 { font-family: "Patrick Hand", cursive; text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 8px; text-underline-offset: -3px; }
+.tape { position: absolute; width: 100px; height: 28px; top: -15px; background: rgba(255, 220, 81, .86); border-left: 2px dashed rgba(80,60,0,.2); border-right: 2px dashed rgba(80,60,0,.2); }
+.tape-left { left: 8%; transform: rotate(-5deg); } .tape-right { right: 8%; transform: rotate(6deg); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 44px 0 30px; }
+.step { display: flex; align-items: flex-start; gap: 14px; }
+.step-number { flex: 0 0 42px; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); background: var(--cyan); font-size: 1.2rem; font-weight: 800; }
+.step:nth-child(2) .step-number { background: var(--yellow); } .step:nth-child(3) .step-number { background: var(--coral); }
+.step h3 { margin: 0 0 5px; font-size: 1.2rem; } .step p { margin: 0; line-height: 1.4; font-family: "Patrick Hand", cursive; font-size: 1.12rem; }
+.win-note { padding: 12px 18px; border: 2px dashed #97a0bb; background: #f0f2fa; border-radius: 8px; text-align: center; font-weight: 600; }
+.win-note span { color: var(--orange); }
+
+.game-screen { min-height: calc(100vh - 60px); padding: 30px 18px; display: grid; place-items: center; }
+.game-card { position: relative; width: min(480px, 100%); padding: 43px 32px 35px; background: var(--paper); border: 4px solid var(--ink); border-radius: 20px 16px 22px 17px; box-shadow: var(--shadow); text-align: center; }
+.game-card .section-kicker { color: var(--blue); }
+.screen-copy { max-width: 360px; margin: 17px auto 24px; color: #596078; line-height: 1.45; font-weight: 600; }
+.card-icon, .role-icon { width: 72px; height: 72px; margin: 0 auto 20px; display: grid; place-items: center; background: var(--cyan); border: 3px solid var(--ink); border-radius: 50%; box-shadow: 4px 4px 0 var(--ink); font-size: 2rem; }
+.back-button { position: absolute; left: 17px; top: 17px; width: 42px; height: 42px; border: 3px solid var(--ink); border-radius: 50%; background: white; cursor: pointer; font-size: 1.2rem; font-weight: 800; }
+.player-picker { display: grid; grid-template-columns: 64px 1fr 64px; gap: 14px; align-items: center; margin: 30px auto 8px; max-width: 310px; }
+.player-picker button { width: 58px; height: 58px; border: 3px solid var(--ink); border-radius: 50%; background: var(--cyan); box-shadow: 3px 3px 0 var(--ink); color: var(--ink); cursor: pointer; font-size: 2rem; line-height: 1; font-weight: 800; }
+.player-picker button:last-child { background: var(--yellow); }
+.player-picker button:disabled { opacity: .35; cursor: not-allowed; }
+.player-picker output { font-size: 4.8rem; line-height: 1; font-weight: 800; }
+.range-label { margin: 0 0 27px; color: #7a8092; font-size: .86rem; font-weight: 700; }
+
+.privacy-badge { display: inline-block; margin-bottom: 19px; padding: 5px 12px; border: 2px dashed var(--coral); color: #c73342; border-radius: 6px; font-size: .76rem; letter-spacing: .08em; font-weight: 800; transform: rotate(-2deg); }
+.phone-illustration { width: 76px; height: 116px; margin: 0 auto 26px; display: grid; place-items: center; background: var(--cyan); border: 4px solid var(--ink); border-radius: 13px; box-shadow: 5px 5px 0 var(--ink); transform: rotate(5deg); }
+.phone-illustration::before { content: ""; position: absolute; width: 31px; height: 5px; margin-top: -91px; border-radius: 4px; background: var(--ink); }
+.phone-illustration span { font-size: 2.2rem; animation: nudge 1.5s ease-in-out infinite; }
+#pass-player { color: var(--blue); }
+
+.role-card { overflow: hidden; }
+.role-card::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .08; background: repeating-linear-gradient(-45deg, transparent 0 14px, var(--blue) 14px 17px); }
+.role-card > * { position: relative; }
+.role-icon { background: var(--yellow); }
+.secret-word { color: var(--blue); font-size: clamp(2.7rem, 12vw, 4.6rem) !important; overflow-wrap: anywhere; }
+.shh-note { display: inline-block; margin: 0 0 24px; padding: 7px 15px; background: #eef0f8; border-radius: 99px; font-size: .9rem; font-weight: 700; }
+.role-card.is-imposter { background: #fff1ef; }
+.role-card.is-imposter::before { background: repeating-linear-gradient(-45deg, transparent 0 14px, var(--coral) 14px 17px); }
+.role-card.is-imposter .role-icon { background: var(--coral); animation: alert-pulse 1.7s ease-in-out infinite; }
+.role-card.is-imposter .secret-word { color: #d43643; font-size: clamp(2.3rem, 10vw, 3.6rem) !important; }
+
+.ready-card .burst { width: 94px; height: 94px; margin: 0 auto 24px; display: grid; place-items: center; color: var(--ink); background: var(--yellow); border: 4px solid var(--ink); clip-path: polygon(50% 0,61% 25%,84% 9%,77% 35%,100% 38%,78% 53%,96% 72%,69% 69%,67% 100%,49% 77%,31% 100%,31% 71%,4% 76%,23% 54%,0 39%,27% 35%,17% 8%,40% 25%); font-size: 2.1rem; }
+.starter-note { margin: 27px 0 18px; padding: 18px; background: #e8ecff; border: 3px dashed var(--blue); border-radius: 13px; }
+.starter-label { display: block; color: #68729d; text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; font-weight: 800; }
+.starter-note strong { display: block; margin-top: 3px; color: var(--blue); font-size: 2rem; }
+.vote-reminder { margin: 0 auto 25px; max-width: 350px; color: #6c7286; font-size: .9rem; line-height: 1.4; }
+.text-button { margin-top: 20px; border: 0; background: transparent; color: var(--ink); text-decoration: underline; cursor: pointer; font-weight: 700; }
+footer { height: 60px; display: flex; justify-content: center; align-items: center; color: #cbd5ff; font-size: .86rem; font-weight: 600; }
+
+@keyframes wiggle { 0%, 100% { transform: rotate(-2deg) translateY(0); } 50% { transform: rotate(2deg) translateY(-3px); } }
+@keyframes screen-in { from { opacity: 0; transform: translateY(9px) scale(.99); } to { opacity: 1; transform: none; } }
+@keyframes nudge { 0%, 100% { transform: translate(0, 2px); } 50% { transform: translate(5px, -5px); } }
+@keyframes alert-pulse { 0%, 100% { transform: rotate(-3deg) scale(1); } 50% { transform: rotate(3deg) scale(1.07); } }
+
+@media (max-width: 760px) {
+  .home-screen { padding-inline: 14px; }
+  .hero { min-height: 565px; }
+  .steps { grid-template-columns: 1fr; gap: 24px; }
+  .how-to-play { padding: 44px 22px 27px; }
+  .step { max-width: 440px; margin: auto; }
+}
+
+@media (max-width: 390px) {
+  .game-card { padding: 39px 20px 28px; }
+  .logo-word { font-size: 3rem; }
+  .suspect { width: 49px; height: 50px; }
+  .suspect-three { height: 59px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
