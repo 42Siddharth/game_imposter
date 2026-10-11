@@ -4,7 +4,14 @@ if (WORDS.length !== 1000) {
   throw new Error(`Expected 1,000 unique words, but found ${WORDS.length}.`);
 }
 
-const state = { playerCount: 4, currentPlayer: 0, imposterIndex: 0, word: "", startingPlayer: 0 };
+const state = {
+  playerCount: 4,
+  currentPlayer: 0,
+  imposterIndex: 0,
+  word: "",
+  startingPlayer: 0,
+  usedWords: new Set()
+};
 const screens = [...document.querySelectorAll(".screen")];
 
 const $ = (selector) => document.querySelector(selector);
@@ -38,11 +45,25 @@ function updatePlayerPicker() {
 }
 
 function prepareRound() {
+  const availableWords = WORDS.filter((word) => !state.usedWords.has(word));
+
+  if (availableWords.length === 0) {
+    window.alert("You have used every word in this session. Go Back to Home to reset the word pool.");
+    return;
+  }
+
   state.currentPlayer = 0;
   state.imposterIndex = randomIndex(state.playerCount);
-  state.word = WORDS[randomIndex(WORDS.length)];
+  state.word = availableWords[randomIndex(availableWords.length)];
+  state.usedWords.add(state.word);
   state.startingPlayer = randomIndex(state.playerCount);
   showPassScreen();
+}
+
+function goHome() {
+  state.usedWords.clear();
+  state.word = "";
+  showScreen("home-screen");
 }
 
 function showPassScreen() {
@@ -83,6 +104,6 @@ $("#begin-round-button").addEventListener("click", prepareRound);
 $("#reveal-button").addEventListener("click", revealRole);
 $("#confirm-button").addEventListener("click", confirmRole);
 $("#new-round-button").addEventListener("click", prepareRound);
-document.querySelectorAll('[data-action="home"]').forEach((button) => button.addEventListener("click", () => showScreen("home-screen")));
+document.querySelectorAll('[data-action="home"]').forEach((button) => button.addEventListener("click", goHome));
 
 updatePlayerPicker();
