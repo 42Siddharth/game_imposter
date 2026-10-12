@@ -29,6 +29,7 @@ function randomIndex(length) {
 }
 
 function showScreen(id) {
+  document.body.classList.toggle("game-active", id !== "home-screen");
   screens.forEach((screen) => {
     const isTarget = screen.id === id;
     screen.hidden = !isTarget;
